@@ -8,9 +8,12 @@ app.config['SECRET_KEY'] = "horsey90"
 debug = DebugToolbarExtension(app)
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
-
 @app.route('/')
-def home_survey():
+def home():
+    return render_template('home.html')
+
+@app.route('/begin', methods=['POST'])
+def begin_survey():
     session['responses'] = []
     title = satisfaction_survey.title
     instructions = satisfaction_survey.instructions
